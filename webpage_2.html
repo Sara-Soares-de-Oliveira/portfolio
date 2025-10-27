@@ -1,0 +1,350 @@
+<!doctype html>
+<html lang="pt">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0Fq3z+6DgY0p3LGnB9J9+q5hWUJZ8z5E0V0U5y3Vx1JdPDJ9aQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Portfólio — Sara Oliveira (Eng. Informática)</title>
+  <meta name="description" content="Portfólio com navegação lateral animada, responsivo, centralizado e sem scroll interno." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg: #FAF4EF;              /* creme quente */
+      --panel: #FFFFFF;            /* cartões/painéis */
+      --ink: #1F1A1A;              /* texto principal */
+      --muted: #6A5F5B;            /* texto secundário */
+      --bordeaux: #9E2A2B;         /* acento quente */
+      --sage: #6B9080;             /* acento frio suave */
+      --ring: rgba(158,42,43,.18);
+      --radius: 18px;
+      --shadow: 0 8px 28px rgba(0,0,0,.08);
+      --maxw: 1180px;
+    }
+
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;background:var(--bg);color:var(--ink)}
+    body{font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial; line-height:1.6}
+
+    h1,h2,h3{font-family: Montserrat, Inter; margin:0 0 .6rem}
+    h1{font-size: clamp(2rem, 4vw, 3rem)}
+    h2{font-size: clamp(1.2rem, 2.2vw, 1.8rem)}
+    p{margin:.25rem 0 .8rem}
+    a{color:var(--sage); text-decoration:none}
+    img{max-width:100%; display:block; border-radius:14px}
+
+    /* ====== Página centralizada sem hacks no <body> ====== */
+    .page{min-height:100svh; display:grid; place-items:center; padding:clamp(16px,3vh,36px)}
+    .wrap{max-width: var(--maxw); width:100%}
+
+    /* ====== Layout ====== */
+    .shell{display:grid; grid-template-columns: 320px 1fr; gap:24px}
+    .panel{background:var(--panel); border-radius: var(--radius); box-shadow: var(--shadow); border:1px solid rgba(0,0,0,.06)}
+
+    /* ====== Sidebar / Tabs ====== */
+    .sidebar{padding:16px}
+    .brand{display:flex; align-items:center; gap:12px; margin-bottom:14px}
+    .logo{width:42px; height:42px; border-radius:14px; background: linear-gradient(135deg, var(--bordeaux), var(--sage))}
+    .brand .muted{font-size:.9rem}
+
+    .tabs{position:relative; display:flex; flex-direction:column; gap:10px; margin-top:10px}
+    .tabs input{display:none}
+    .tabs label{padding:12px 14px; border-radius:12px; color:#2d2a2a; cursor:pointer; transition:background .2s ease, color .2s ease, border-color .2s ease; border:1px solid transparent}
+    .tabs label:hover{background:#F5EDE7}
+    .tabs label.active{color: var(--bordeaux); background:#FFFFFF; border-color: var(--ring)}
+
+    .marker{position:absolute; height:44px; border-radius:12px; background: linear-gradient(180deg, rgba(158,42,43,.08), rgba(107,144,128,.10)); border:1px solid rgba(107,144,128,.22); box-shadow: inset 0 0 0 1px rgba(255,255,255,.8); transition: transform .25s ease, width .25s ease, left .25s ease, top .25s ease; pointer-events:none}
+
+    /* ====== Conteúdo ====== */
+    .content{padding:0}
+    .toolbar{display:flex; justify-content:flex-start; align-items:center; padding:16px 18px; border-bottom:1px solid rgba(0,0,0,.06)}
+
+    /* ✅ Sem scroll interno */
+    .pane{display:none; padding:22px}
+    .pane.active{display:block; animation: fadeIn .18s ease}
+    @keyframes fadeIn{from{opacity:0; transform: translateY(6px)} to{opacity:1; transform:none}}
+
+    .grid{display:grid; grid-template-columns: 1.15fr .85fr; gap:16px}
+    .card{background:#fff; border:1px solid rgba(0,0,0,.06); border-radius:16px; padding:16px; box-shadow: var(--shadow)}
+    .muted{color:var(--muted)}
+    .btn{display:inline-flex; align-items:center; gap:8px; border:none; padding:10px 14px; border-radius:12px; font-weight:600; cursor:pointer; background: linear-gradient(135deg, var(--bordeaux), #C85C5C); color:#fff; box-shadow: 0 8px 18px rgba(158,42,43,.22); transition: transform .2s ease}
+    .btn:hover{ transform: translateY(-2px) }
+
+    /* ====== Responsivo ====== */
+    @media (max-width: 980px){
+      .shell{grid-template-columns: 1fr}
+      .tabs{flex-direction:row; gap:8px; overflow:auto; padding:6px; border-radius:12px}
+      .tabs label{white-space:nowrap; padding:10px 12px}
+      .marker{height:38px}
+      .grid{grid-template-columns: 1fr}
+      .page{place-items:start center}
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <div class="wrap">
+      <div class="shell">
+        <!-- ====== Sidebar ====== -->
+        <aside class="panel sidebar">
+          <div class="brand">
+            <div class="logo" aria-hidden="true"></div>
+            <div>
+              <strong>Sara Oliveira</strong>
+              <div class="muted">Engenharia Informática</div>
+            </div>
+          </div>
+
+          <div class="tabs" id="tabs" role="tablist" aria-label="Navegação do portfólio">
+            <input type="radio" name="tab" id="tab-home" checked>
+            <label for="tab-home" role="tab" aria-controls="pane-home" aria-selected="true">Início</label>
+
+            <input type="radio" name="tab" id="tab-comp">
+            <label for="tab-comp" role="tab" aria-controls="pane-comp">Competências</label>
+
+            <input type="radio" name="tab" id="tab-proj">
+            <label for="tab-proj" role="tab" aria-controls="pane-proj">Projetos</label>
+
+            <input type="radio" name="tab" id="tab-soft">
+            <label for="tab-soft" role="tab" aria-controls="pane-soft">Soft skills</label>
+
+            <input type="radio" name="tab" id="tab-cv">
+            <label for="tab-cv" role="tab" aria-controls="pane-cv">CV & Contacto</label>
+
+            <div class="marker" id="marker"></div>
+          </div>
+        </aside>
+
+        <!-- ====== Content ====== -->
+        <section class="panel content">
+          <div class="toolbar">
+            <h2 id="toolbar-title">Início</h2>
+          </div>
+
+          <!-- Pane: Início -->
+          <div class="pane active" id="pane-home" role="tabpanel" aria-labelledby="tab-home">
+            <h1>Olá! Eu sou <span style="color:var(--bordeaux)">Sara Oliveira</span></h1>
+            <p class="muted">Estudante de <strong>Engenharia Informática</strong>. Interessa-me Cyber Security, Python e Data Science. Este portfólio reúne projetos, competências e o que me move além do código.</p>
+            <div class="grid" style="margin-top:10px">
+              <div class="card">
+                <h3>Destaques</h3>
+                <ul>
+                    <li>Procurando estágio e certificações em Cyber Security</li>
+                </ul>
+              </div>
+              <img 
+    src="cyber.avif" 
+    alt="Close-up de um telemóvel com luz verde, representando tecnologia moderna" 
+    style="border-radius:16px; object-fit:cover; width:100%; height:auto;"
+  />
+  </div>
+          </div>
+
+          <!-- Pane: Competências -->
+          <div class="pane" id="pane-comp" role="tabpanel" aria-labelledby="tab-comp">
+            <h1>Competências & Formação</h1>
+            <p class="muted">
+              Conhecimentos técnicos e experiências que venho desenvolvendo durante a licenciatura 
+              e a minha jornada profissional.
+            </p>
+          
+            <div class="grid" style="margin-top:10px">
+              <!-- Competências -->
+              <div class="card">
+                <h3>Stack Técnica</h3>
+                <p class="muted">As ferramentas e linguagens que mais utilizo no dia a dia.</p>
+                <div style="display:flex; gap:8px; flex-wrap:wrap; margin-top:8px">
+                  <span class="btn" style="padding:6px 10px; box-shadow:none; background:rgba(158,42,43,.08); color:#6a1c1c;">Python</span>
+                  <span class="btn" style="padding:6px 10px; box-shadow:none; background:rgba(107,144,128,.12); color:#27443b;">SQL</span>
+                  <span class="btn" style="padding:6px 10px; box-shadow:none; background:rgba(107,144,128,.12); color:#27443b;">Git</span>
+                </div>
+                <p class="muted" style="margin-top:10px;">
+                  Experiência em automação, análise de dados e controlo de versões.
+                </p>
+              </div>
+          
+              <!-- Formação e Experiência -->
+              <div class="card">
+                <h3>Formação & Experiência</h3>
+                <ul>
+                  <li><strong>Licenciatura em Engenharia Informática</strong> — (em curso)</li>
+                  <li><strong>Colaborador no McDonald’s Beja</strong> — desde 2023</li>
+                </ul>
+                <p class="muted">
+                  O trabalho no McDonald’s tem-me ajudado a desenvolver competências interpessoais,
+                  gestão de tempo, trabalho em equipa e foco sob pressão — qualidades que aplico também
+                  no contexto académico e tecnológico.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Pane: Projetos -->
+          <div class="pane" id="pane-proj" role="tabpanel" aria-labelledby="tab-proj">
+            <h1>Projetos selecionados</h1>
+            <p class="muted">Uma amostra prática do meu trabalho e das competências que venho desenvolvendo.</p>
+          
+            <div class="grid" style="margin-top:10px">
+              <!-- Projeto principal -->
+              <div class="card">
+                <img 
+                  src="automation.jpeg" 
+                  alt="Imagem ilustrativa de automação e organização digital" 
+                  style="border-radius:16px; object-fit:cover; width:100%; height:auto;"
+                />
+                <h3>AutoOrganizer</h3>
+                <p class="muted">
+                  Aplicação desenvolvida para automatizar tarefas e organizar informações de forma eficiente.
+                  O projeto foca-se na praticidade e usabilidade, demonstrando competências em 
+                  <strong>Python</strong>, <strong>Automoção</strong> e boas práticas de código.
+                </p>
+                <a href="https://github.com/Sara-Soares-de-Oliveira/AutoOrganizer" 
+                   target="_blank" rel="noopener" 
+                   class="btn" style="margin-top:8px;">🔗 Ver no GitHub</a>
+              </div>
+          
+              <!-- Espaço para futuros projetos -->
+              <div class="card" style="display:flex; align-items:center; justify-content:center; text-align:center;">
+                <p class="muted">Novos projetos em desenvolvimento... 🚀</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Pane: Soft skills -->
+          <div class="pane" id="pane-soft" role="tabpanel" aria-labelledby="tab-soft">
+            <h1>Mais sobre mim</h1>
+            <p class="muted">
+              Interesses e vivências que fortalecem as minhas <strong>soft skills</strong> e contribuem 
+              para o meu crescimento pessoal e profissional.
+            </p>
+          
+            <div class="grid" style="margin-top:10px">
+              <!-- Voluntariado -->
+              <div class="card" style="text-align:center; padding:20px;">
+                <h3>Voluntariado</h3>
+                <div style="background:#faf4ef; padding:10px; border-radius:14px; display:inline-block; margin:10px 0;">
+                  <img 
+                    src="Volutariado.JPG" 
+                    alt="Sara Soares de Oliveira no Banco Alimentar"
+                    style="width:180px; border-radius:10px; object-fit:cover;"
+                  />
+                </div>
+                <p class="muted" style="text-align:left;">
+                  Atuei como voluntária no <strong>Banco Alimentar Contra a Fome</strong>, colaborando nas campanhas de recolha de alimentos. 
+                  Essa experiência reforçou a empatia, o trabalho em equipa e o compromisso com causas sociais.
+                </p>
+              </div>
+          
+              <!-- Outros interesses -->
+              <div class="card">
+                <h3>Interesses e Hobbies</h3>
+                <p class="muted">
+                  Gosto de aprender continuamente e explorar novas tecnologias. Nos meus tempos livres, 
+                  gosto de praticar <strong>corrida</strong> e de <strong>ouvir música</strong>, atividades 
+                  que me ajudam a manter o equilíbrio e a criatividade.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Pane: CV & Contato -->
+          <div class="pane" id="pane-cv" role="tabpanel" aria-labelledby="tab-cv">
+            <h1>CV & Contacto</h1>
+            <p class="muted">O portfólio complementa o currículo — não é uma cópia literal.</p>
+          
+            <div class="grid" style="margin-top:10px">
+              <!-- Currículo -->
+              <div class="card">
+                <h3>Currículo</h3>
+                <ul>
+                  <li><a href="cv-europass.pdf" target="_blank" rel="noreferrer">📄 Modelo Europeu (PDF)</a></li>
+                </ul>
+                <button class="btn" style="margin-top:10px">📥 Download rápido</button>
+              </div>
+          
+              <!-- Contacto -->
+              <div class="card">
+                <div class="card">
+                    <h3>Contacto</h3>
+                    <p class="muted">Disponível para estágios e colaborações.</p>
+                  
+                    <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:10px; align-items:center; justify-content:flex-start;">
+                      <a class="btn" style="background:#fff; color:var(--bordeaux); border:1px solid rgba(0,0,0,.1);" 
+                         href="mailto:sarasoares99@outlook.com" title="Enviar email">
+                        <i class="fa-solid fa-envelope" style="margin-right:6px;"></i>Email
+                      </a>
+                  
+                      <a class="btn" style="background:#fff; color:var(--bordeaux); border:1px solid rgba(0,0,0,.1);" 
+                         href="https://www.linkedin.com/in/sara-oliveira-055a35278/" target="_blank" title="Ver LinkedIn">
+                        <i class="fa-brands fa-linkedin" style="margin-right:6px;"></i>LinkedIn
+                      </a>
+                  
+                      <a class="btn" style="background:#fff; color:var(--bordeaux); border:1px solid rgba(0,0,0,.1);" 
+                         href="https://github.com/Sara-Soares-de-Oliveira" target="_blank" title="Ver GitHub">
+                        <i class="fa-brands fa-github" style="margin-right:6px;"></i>GitHub
+                      </a>
+                    </div>
+                  </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <div style="text-align:center; color:#8a8a8a; font-size:.9rem; margin-top:14px">© <span id="year"></span> • Teu Nome — Portfólio</div>
+    </div>
+  </main>
+
+  <script>
+    const map = {
+      'tab-home': ['pane-home','Início'],
+      'tab-comp': ['pane-comp','Competências'],
+      'tab-proj': ['pane-proj','Projetos'],
+      'tab-soft': ['pane-soft','Soft skills'],
+      'tab-cv'  : ['pane-cv','CV & Contacto']
+    };
+
+    const toolbarTitle = document.getElementById('toolbar-title');
+    const tabs = document.getElementById('tabs');
+    const marker = document.getElementById('marker');
+
+    function sync(){
+      const active = tabs.querySelector('input:checked')?.id || 'tab-home';
+      const [paneId, title] = map[active];
+      toolbarTitle.textContent = title;
+      // toggle
+      Object.values(map).forEach(([id]) => document.getElementById(id).classList.remove('active'));
+      document.getElementById(paneId).classList.add('active');
+      // labels
+      tabs.querySelectorAll('label').forEach(l => l.classList.remove('active'));
+      const label = tabs.querySelector(`label[for="${active}"]`);
+      label?.classList.add('active');
+      // marker pos
+      requestAnimationFrame(() => {
+        const rTabs = tabs.getBoundingClientRect();
+        const r = label.getBoundingClientRect();
+        const isRow = window.matchMedia('(max-width: 980px)').matches;
+        if(isRow){
+          marker.style.top = (r.top - rTabs.top + tabs.scrollTop) + 'px';
+          marker.style.left = (r.left - rTabs.left + tabs.scrollLeft) + 'px';
+          marker.style.width = r.width + 'px';
+          marker.style.height = '38px';
+        } else {
+          marker.style.left = (8) + 'px';
+          marker.style.width = (rTabs.width - 16) + 'px';
+          marker.style.top = (r.top - rTabs.top + tabs.scrollTop) + 'px';
+          marker.style.height = '44px';
+        }
+      });
+    }
+
+    tabs.querySelectorAll('input').forEach(r => r.addEventListener('change', sync));
+    window.addEventListener('resize', sync);
+    window.addEventListener('load', sync);
+    sync();
+
+    // footer year
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
