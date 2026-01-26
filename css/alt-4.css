@@ -1,0 +1,253 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Syne:wght@600;700&display=swap");
+
+:root {
+  --bg: #070707;
+  --surface: #111114;
+  --accent: #ff7a18;
+  --accent-soft: #ffb067;
+  --text: #f8f4ef;
+  --muted: #b8b2ab;
+  --border: rgba(255, 255, 255, 0.08);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "DM Sans", "Segoe UI", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+
+a {
+  color: inherit;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2.5rem 3.5rem 1.5rem;
+}
+
+.logo {
+  font-family: "Syne", sans-serif;
+  font-size: 1.4rem;
+}
+
+.nav {
+  display: flex;
+  gap: 1.5rem;
+  color: var(--muted);
+}
+
+.nav a {
+  text-decoration: none;
+}
+
+main {
+  padding: 0 3.5rem 4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 4.5rem;
+}
+
+.story {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 3rem;
+  align-items: center;
+}
+
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  font-size: 0.75rem;
+  color: var(--accent-soft);
+}
+
+.story-content h1 {
+  font-family: "Syne", sans-serif;
+  font-size: clamp(2.6rem, 4vw, 3.6rem);
+  line-height: 1.05;
+  margin: 0.8rem 0 1rem;
+}
+
+.story-content p {
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.story-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.pill {
+  padding: 0.8rem 1.5rem;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.pill.primary {
+  background: var(--accent);
+  color: #1a0f08;
+}
+
+.pill.ghost {
+  border-color: var(--border);
+}
+
+.story-card {
+  background: var(--surface);
+  border-radius: 20px;
+  padding: 1.8rem;
+  border: 1px solid var(--border);
+}
+
+.story-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 0.5rem;
+  color: var(--muted);
+}
+
+.timeline-title h2 {
+  margin: 0 0 0.6rem;
+}
+
+.timeline-title p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.timeline-track {
+  margin-top: 2rem;
+  display: grid;
+  gap: 1.5rem;
+  position: relative;
+}
+
+.timeline-track::before {
+  content: "";
+  position: absolute;
+  left: 16px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(180deg, transparent, var(--accent), transparent);
+}
+
+.step {
+  display: grid;
+  grid-template-columns: 60px 1fr;
+  gap: 1.2rem;
+  padding-left: 0.5rem;
+}
+
+.step span {
+  font-family: "Syne", sans-serif;
+  color: var(--accent-soft);
+  font-size: 1.2rem;
+}
+
+.step h3 {
+  margin: 0;
+}
+
+.step p {
+  color: var(--muted);
+  margin: 0.4rem 0 0;
+}
+
+.projects-title h2 {
+  margin: 0 0 0.6rem;
+}
+
+.projects-title p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.project-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.project-cards article {
+  background: var(--surface);
+  border-radius: 16px;
+  padding: 1.6rem;
+  border: 1px solid var(--border);
+}
+
+.project-cards p {
+  color: var(--muted);
+}
+
+.project-cards a {
+  display: inline-block;
+  margin-top: 1rem;
+  color: var(--accent-soft);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.contact {
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+  padding: 2.5rem;
+  border-radius: 24px;
+  border: 1px solid rgba(255, 122, 24, 0.3);
+  background: linear-gradient(135deg, rgba(255, 122, 24, 0.2), rgba(17, 17, 20, 0.95));
+}
+
+.contact p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.contact-actions {
+  display: flex;
+  gap: 1rem;
+}
+
+@media (max-width: 900px) {
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .contact {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 600px) {
+  .header,
+  main {
+    padding-left: 1.6rem;
+    padding-right: 1.6rem;
+  }
+
+  .story-actions,
+  .contact-actions {
+    flex-direction: column;
+  }
+
+  .pill {
+    width: 100%;
+    text-align: center;
+  }
+}

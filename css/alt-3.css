@@ -1,0 +1,244 @@
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Sora:wght@500;600;700&display=swap");
+
+:root {
+  --bg: #080808;
+  --surface: #111112;
+  --accent: #ff7a18;
+  --accent-soft: #ffb067;
+  --text: #f9f4ef;
+  --muted: #b7b1aa;
+  --border: rgba(255, 255, 255, 0.08);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Manrope", "Segoe UI", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+
+a {
+  color: inherit;
+}
+
+.header {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  gap: 2rem;
+  align-items: center;
+  padding: 2.5rem 3.5rem 1.5rem;
+}
+
+.brand {
+  display: grid;
+  gap: 0.3rem;
+  font-family: "Sora", sans-serif;
+}
+
+.role {
+  color: var(--accent-soft);
+  font-size: 0.9rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.nav {
+  display: flex;
+  gap: 1.5rem;
+  color: var(--muted);
+}
+
+.nav a {
+  text-decoration: none;
+}
+
+.cta {
+  padding: 0.7rem 1.3rem;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  text-decoration: none;
+}
+
+main {
+  padding: 0 3.5rem 4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 4.5rem;
+}
+
+.about {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 3rem;
+}
+
+.about-main h1 {
+  font-family: "Sora", sans-serif;
+  font-size: clamp(2.5rem, 4vw, 3.4rem);
+  line-height: 1.1;
+  margin: 0 0 1rem;
+}
+
+.about-main p {
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.about-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.btn {
+  padding: 0.85rem 1.5rem;
+  border-radius: 10px;
+  border: 1px solid transparent;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.btn.primary {
+  background: var(--accent);
+  color: #1a0f08;
+}
+
+.btn.outline {
+  border-color: var(--border);
+}
+
+.about-aside {
+  display: grid;
+  gap: 1.4rem;
+}
+
+.panel {
+  background: var(--surface);
+  border-radius: 18px;
+  padding: 1.6rem;
+  border: 1px solid var(--border);
+}
+
+.panel.orange {
+  background: linear-gradient(135deg, rgba(255, 122, 24, 0.2), rgba(17, 17, 18, 0.9));
+  border-color: rgba(255, 122, 24, 0.3);
+}
+
+.panel ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 0.4rem;
+  color: var(--muted);
+}
+
+.capabilities {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+}
+
+.capability {
+  padding: 1.6rem;
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+}
+
+.capability h2 {
+  font-family: "Sora", sans-serif;
+  font-size: 1.3rem;
+  margin-top: 0;
+}
+
+.capability p {
+  color: var(--muted);
+  margin: 0;
+}
+
+.projects-header h2 {
+  margin: 0 0 0.6rem;
+}
+
+.projects-header p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.projects-list {
+  display: grid;
+  gap: 1.2rem;
+  margin-top: 1.5rem;
+}
+
+.projects-list article {
+  padding: 1.6rem;
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  background: #0f0f10;
+}
+
+.projects-list p {
+  color: var(--muted);
+}
+
+.projects-list a {
+  color: var(--accent-soft);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.contact {
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+  padding: 2.5rem;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 122, 24, 0.3);
+  background: linear-gradient(120deg, rgba(255, 122, 24, 0.2), rgba(17, 17, 18, 0.95));
+}
+
+.contact p {
+  color: var(--muted);
+  margin: 0;
+}
+
+.contact-actions {
+  display: flex;
+  gap: 1rem;
+}
+
+@media (max-width: 900px) {
+  .header {
+    grid-template-columns: 1fr;
+    align-items: flex-start;
+  }
+
+  .contact {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 600px) {
+  .header,
+  main {
+    padding-left: 1.6rem;
+    padding-right: 1.6rem;
+  }
+
+  .about-actions,
+  .contact-actions {
+    flex-direction: column;
+  }
+
+  .btn,
+  .cta {
+    width: 100%;
+    text-align: center;
+  }
+}

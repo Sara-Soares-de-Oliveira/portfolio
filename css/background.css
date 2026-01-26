@@ -1,0 +1,28 @@
+.background {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+  
+    background: linear-gradient(
+      120deg,
+      #02040a,
+      #050914,
+      #02040a
+    );
+  
+    background-size: 400% 400%;
+    animation: slowShift 45s linear infinite;
+  }
+  
+  /* movimento lento e contínuo */
+  @keyframes slowShift {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
