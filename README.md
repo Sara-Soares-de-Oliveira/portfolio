@@ -7,7 +7,7 @@ The website was built with a focus on simplicity, clarity, and security, avoidin
 ---
 
 ## Live Website
-👉 https://Sara-Soares-de-Oliveira.github.io  
+👉 https://sara-soares-de-oliveira.github.io  
 
 
 ---
@@ -24,3 +24,4 @@ The website was built with a focus on simplicity, clarity, and security, avoidin
 ## 📌 Notes
 
 This portfolio is continuously updated as I learn new technologies and work on new projects.
+
